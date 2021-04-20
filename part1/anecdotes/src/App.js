@@ -18,6 +18,8 @@ const App = () => {
     )
   )
 
+  const maxRating = anecdotesRating.indexOf(Math.max(...anecdotesRating))
+
   const randomNum = Math.floor(Math.random() * anecdotes.length)
 
   const getRandomAnecdote = () => {
@@ -32,7 +34,6 @@ const App = () => {
       ...anecdotesRating.slice(selected + 1),
     ])
   }
-  console.log(anecdotesRating)
   return (
     <div>
       {anecdotes[selected]} <br />
@@ -40,6 +41,13 @@ const App = () => {
       <br />
       <button onClick={() => addVote()}>vote</button>
       <button onClick={() => getRandomAnecdote()}>next anecdote</button>
+      {anecdotesRating && (
+        <div>
+          <h2>Anecdote with most votes</h2>
+          <p>{anecdotes[maxRating]}</p>
+          <p>has {anecdotesRating[selected]} votes</p>
+        </div>
+      )}
     </div>
   )
 }
