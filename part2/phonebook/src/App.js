@@ -18,7 +18,7 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
       <div>debug: {newName}</div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           name:{' '}
           <input
@@ -27,9 +27,7 @@ const App = () => {
           />
         </div>
         <div>
-          <button type='submit' onClick={handleSubmit}>
-            add
-          </button>
+          <button type='submit'>add</button>
         </div>
       </form>
       <h2>Numbers</h2>
