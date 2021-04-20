@@ -1,7 +1,7 @@
 import React from 'react'
 import Statistic from './Statistic'
 
-const Statistics = ({ good, setGood, neutral, setNeutral, bad, setBad }) => {
+const Statistics = ({ good, neutral, bad }) => {
   const calcAll = () => {
     return good + bad + neutral
   }
