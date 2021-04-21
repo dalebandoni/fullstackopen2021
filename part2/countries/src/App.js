@@ -31,7 +31,12 @@ function App() {
         {filteredCountries.length < 10 &&
           filteredCountries.length > 1 &&
           filteredCountries.map(country => (
-            <p key={country.alpha2Code}>{country.name}</p>
+            <>
+              <p key={country.alpha2Code}>
+                {country.name}{' '}
+                <button onClick={() => setFilter(country.name)}>show</button>
+              </p>{' '}
+            </>
           ))}
       </ul>
       {filteredCountries.length === 1 &&
