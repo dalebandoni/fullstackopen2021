@@ -76,10 +76,14 @@ const App = () => {
     }, 5000)
   }
 
-  const handleDelete = async id => {
-    const deletedPerson = await personService.deletePerson(id)
-    setPersons(persons.filter(person => person.id !== id))
-    return deletedPerson
+  const handleDelete = async personToDelete => {
+    try {
+      const deletedPerson = await personService.deletePerson(personToDelete.id)
+      setPersons(persons.filter(person => person.id !== personToDelete.id))
+      return deletedPerson
+    } catch (error) {
+      setMessage(`Person ${personToDelete.name} already deleted from server.`)
+    }
   }
 
   return (
