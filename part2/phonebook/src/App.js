@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Notification from './components/Notification'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import SearchFilter from './components/SearchFilter'
@@ -9,6 +10,7 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
+  const [message, setMessage] = useState('')
 
   useEffect(() => {
     const fetchPersons = async () => {
@@ -48,6 +50,13 @@ const App = () => {
             person.id !== existingName[0].id ? person : updatedPerson.data
           )
         )
+        setNewName('')
+        setNewNumber('')
+        setMessage(`${newName} number was updated!`)
+
+        setTimeout(() => {
+          setMessage(null)
+        }, 5000)
       } else {
         return
       }
@@ -59,6 +68,12 @@ const App = () => {
     setPersons(persons.concat(newPerson.data))
     setNewName('')
     setNewNumber('')
+
+    setMessage(`${newName} added to the phonebook!`)
+
+    setTimeout(() => {
+      setMessage(null)
+    }, 5000)
   }
 
   const handleDelete = async id => {
@@ -69,6 +84,7 @@ const App = () => {
 
   return (
     <div>
+      {message && <Notification message={message} />}
       <h2>Phonebook</h2>
       <SearchFilter filter={filter} setFilter={setFilter} />
       <h3>add a new person</h3>
